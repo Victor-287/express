@@ -9,12 +9,10 @@ app.use(express.json())
 
 const db = async () => {
   try {
-    await mongoose.connect("mongodb+srv://Cluster92581:c9q0O8qHCeXvRhwW@drakehazer.8cc9x.mongodb.net/")
+    await mongoose.connect("mongodb://127.0.0.1:27017/AYAF")
     console.log("connection Established");
-    
   } catch (error) {
     console.log("error connecting to the database");
-    
   }
 }
 
@@ -47,9 +45,16 @@ app.get('/', (req,res) => {
 app.post('/signup', async(req,res)=>{
   try {
     const {userName,email,password} = req.body;
+    const existingUser = await User.findOne({email: email})
     if (existingUser) {
-      
+      return res.status(400).json({message: "User already exists please login"});
     }
+    const hashPassword = await bcrypt.hash(password, 10)
+    const newUser = ({
+      userName: userName,
+      email: email,
+      password: hashPassword
+    })
   } catch (error) {
     
   }
