@@ -5,7 +5,7 @@ const app = express()
 const env = require("dotenv")
 env.config();
 const port = process.env.PORT;
-app.use(express.json());
+app.use(express.json())
 
 const db = async () => {
   try {
@@ -97,5 +97,5 @@ app.post('/login', async(req, res) => {
 })
 
 app.listen(port, () => {
-  console.log("Listening on localhost:"+port);
+  console.log("Listening on localhost:4000");
 });
