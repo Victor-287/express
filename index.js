@@ -3,13 +3,13 @@ const mongoose = require("mongoose")
 const bcrypt = require("bcrypt")
 const app = express()
 const env = require("dotenv")
-const port = 4000
-
+env.config();
+const port = process.env.PORT;
 app.use(express.json());
 
 const db = async () => {
   try {
-    await mongoose.connect("mongodb://127.0.0.1:27017/AYAF");
+    await mongoose.connect(process.env.DB_STRING);
     console.log("connection Established");
   } catch (error) {
     console.log("error connecting to the database");
