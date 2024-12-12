@@ -97,5 +97,5 @@ app.post('/login', async(req, res) => {
 })
 
 app.listen(port, () => {
-  console.log("Listening on localhost:4000");
+  console.log("Listening on localhost:"+port);
 });
